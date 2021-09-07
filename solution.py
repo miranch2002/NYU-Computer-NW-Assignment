@@ -30,7 +30,7 @@ def welcome_assignment_answers(question):
 
 
 if __name__ == "__main__":
-    #use this space to debug and verify that the program works
+    #use this space to debug and verify that the program works.
     debug_question = "In Slack, what is the secret passphrase posted in the #cyberfellows-computernetworking-fall2021 channel posted by a TA?"
     print(welcome_assignment_answers(debug_question))
 
