@@ -76,11 +76,11 @@ def build_packet():
     return packet
 
 def get_route(hostname):
-    timeLeft = TIMEOUT
-    tracelist1 = [] #This is your list to use when iterating through each trace 
+    timeLeft = TIMEOUT    
     tracelist2 = [] #This is your list to contain all traces
 
     for ttl in range(1,MAX_HOPS):
+        tracelist1 = [] #This is your list to use when iterating through each trace 
         for tries in range(TRIES):
             destAddr = gethostbyname(hostname)
 
@@ -107,6 +107,7 @@ def get_route(hostname):
                     #You should add the list above to your all traces list
                     #print("%d %s %s" %(ttl, "*", "Request timed out"))                    
                     tracelist1.append("%d %s %s" %(ttl, "*", "Request timed out"))
+                    tracelist2.append(tracelist1)
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
@@ -117,7 +118,7 @@ def get_route(hostname):
                     #You should add the list above to your all traces list
                     #print("%d %s %s" %(ttl, "*", "Request timed out"))
                     tracelist1.append("%d %s %s" %(ttl, "*", "Request timed out"))                    
-                    
+                    tracelist2.append(tracelist1)
                     #Fill in end
             except timeout:
                 continue
