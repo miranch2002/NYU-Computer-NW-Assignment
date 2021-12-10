@@ -117,6 +117,7 @@ def get_route(hostname):
                     #You should add the list above to your all traces list
                     #print("%d %s %s" %(ttl, "*", "Request timed out"))
                     tracelist1.append("%d %s %s" %(ttl, "*", "Request timed out"))                    
+                    
                     #Fill in end
             except timeout:
                 continue
@@ -145,8 +146,15 @@ def get_route(hostname):
                     #You should add your responses to your lists here
                     #print("TTL = %d\trtt=%.0f ms\tIP = %s\tHost:%s" %(ttl, (timeReceived -t)*1000, addr[0], routerHostname))
                     #print("%d %.0fms %s %s" %(ttl, (timeReceived -t)*1000, addr[0], routerHostname))
-                    tracelist1.append("%d %.0fms %s %s" %(ttl, (timeReceived -t)*1000, addr[0], routerHostname))
-
+                    #tracelist1.append("%d %.0fms %s %s" %(ttl, (timeReceived -t)*1000, addr[0], routerHostname))
+                    #print("TTL11: " + str(ttl))
+                    tracelist1.clear()
+                    tracelist1.append(str(ttl))
+                    tracelist1.append(str("%.0fms" %((timeReceived -t)*1000)))
+                    tracelist1.append(addr[0])
+                    tracelist1.append(routerHostname)
+                    tracelist2.append(tracelist1)
+                    #print(tracelist2)
                     #Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
@@ -155,7 +163,14 @@ def get_route(hostname):
                     #You should add your responses to your lists here 
                     #print("TTL = %d\trtt=%.0f ms\tIP = %s\tHost:%s" %(ttl, (timeReceived-t)*1000, addr[0], routerHostname))
                     #print("%d %.0fms %s %s" %(ttl, (timeReceived -t)*1000, addr[0], routerHostname))
-                    tracelist1.append("%d %.0fms %s %s" %(ttl, (timeReceived -t)*1000, addr[0], routerHostname))
+                    #tracelist1.append("%d %.0fms %s %s" %(ttl, (timeReceived -t)*1000, addr[0], routerHostname))
+                    #print("TTL3: " + str(ttl))
+                    tracelist1.clear()
+                    tracelist1.append(str(ttl))
+                    tracelist1.append(str("%.0fms" %((timeReceived -t)*1000)))
+                    tracelist1.append(addr[0])
+                    tracelist1.append(routerHostname)
+                    tracelist2.append(tracelist1)
                     #Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
@@ -164,7 +179,15 @@ def get_route(hostname):
                     #You should add your responses to your lists here and return your list if your destination IP is met
                     #print("TTL = %d\trtt=%.0f ms\tIP = %s\tHost:%s" %(ttl, (timeReceived - timeSent)*1000, addr[0], routerHostname))
                     #print("%d %.0fms %s %s" %(ttl, (timeReceived -timeSent)*1000, addr[0], routerHostname))
-                    tracelist1.append("%d %.0fms %s %s" %(ttl, (timeReceived -timeSent)*1000, addr[0], routerHostname))
+                    #tracelist1.append("%d %.0fms %s %s" %(ttl, (timeReceived -timeSent)*1000, addr[0], routerHostname))
+                    #print("TTL0: " + str(ttl))
+                    tracelist1.clear()
+                    #print(tracelist2)
+                    tracelist1.append(str(ttl))
+                    tracelist1.append(str("%.0fms" %((timeReceived -timeSent)*1000)))
+                    tracelist1.append(addr[0])
+                    tracelist1.append(routerHostname)
+                    #print(tracelist1)
                     tracelist2.append(tracelist1)
                     #print(tracelist2)
                     return tracelist2
